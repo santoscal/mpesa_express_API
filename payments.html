@@ -1,0 +1,107 @@
+<!-- {% load static %} -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  
+  <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+  <title>Payment Form</title>
+  
+  <style>
+
+    .form-container {
+    /* background-color: #4CAF50; */
+    padding-top: 3%;
+    max-width: 400px;
+    margin: 0 auto;
+
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    
+    .form-group input[type="text"],
+    .form-group select {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    
+    .form-group .payment-methods {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    
+    .form-group .payment-methods label {
+      margin-bottom: 0;
+    }
+    
+    .form-group .payment-methods input[type="radio"] {
+      margin-right: 10px;
+    }
+    
+    .form-group button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+  .form-container h2{
+      align-items: center;
+      margin-left: 100px;
+  }
+  </style>
+
+  <!-- <link href = "{% static 'home/ted/Desktop/santos/sbs/sbs_mpesa/templates/main.css'%}" rel = "stylesheet"> -->
+  <!-- <link rel="stylesheet" type="text/css" href="/home/ted/Desktop/santos/sbs/sbs_mpesa/templates/main.css"> -->
+</head>
+<body>
+  <div class="form-container">
+    <h2>Account Top Up</h2>
+    
+    <form form id = "payment-form" action="{% url 'initiate_stk_push' %}" method="POST"> {% csrf_token%}
+      <div class="form-group">
+        <label for="phone">Phone Number:</label>
+        <input type="text" id="phone" name="phone" placeholder="0712345678" required>
+      </div>
+
+      <div class="form-group">
+        <label for="amount">Amount:</label>
+        <input type="text" id="amount" name="amount" placeholder="amount" required>
+      </div>
+
+      <div class="form-group"> 
+        <button type="submit">Top Up</button>
+      </div>
+
+    </form>
+    <!-- <script>
+        $(document).ready(function() {
+            // Handle the form submission
+            $("#payment-form").submit(function(event) {
+                event.preventDefault();
+                $.post("/initiate_stk_push/", $(this).serialize(), function(data) {
+                    if (data.success) {
+                        // Show a success pop-up
+                        alert(data.success);
+                    } else if (data.error) {
+                        // Show an error pop-up
+                        alert(data.error);
+                    }
+                });
+            });
+        });
+    </script> -->
+  </div>
+  
+</body>
+</html>
